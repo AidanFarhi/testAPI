@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       items: [],
       isLoaded: false,
@@ -12,20 +12,21 @@ class App extends Component {
   componentDidMount() {
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(res => {
-      return res.json()
+      return res.json();
     })
     .then(data => {
+      console.log(data)
       this.setState({
         isLoaded: true,
         items: data,
-      })
-    })
+      });
+    });
   }
 
   render() {
-    var isLoaded = { isLoaded, items } = this.state
+    var {isLoaded, items} = this.state;
     if (!isLoaded) {
-      return <div>Loading....</div>
+      return <div>Loading....</div>;
     } else {
       return (
         <div className='App'>
@@ -35,7 +36,7 @@ class App extends Component {
                 return (
                   <li key={el.id}>
                     Name: {el.name} | UserName: {el.username} | {' '}
-                    <a href={`https://${el.website}`}>website</a>
+                    <a href={`https://${el.website}`}>Website</a>
                   </li>  
                 )
               })}
@@ -47,4 +48,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
